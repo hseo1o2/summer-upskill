@@ -1,0 +1,185 @@
+/* ===== Global Adjustments ===== */
+html {
+  font-size: 17px; /* 전체적으로 글씨 살짝 키움 */
+}
+
+/* ===== Tokens ===== */
+:root {
+  --bg-start: #dbeafe;
+  --bg-end: #93c5fd;
+  --card-bg: rgba(255, 255, 255, 0.65);
+  --card-border: rgba(255, 255, 255, 0.7);
+  --text-main: #0f172a;
+  --text-dim: #334155;
+  --primary: #2563eb;
+  --primary-hover: #1d4ed8;
+  --focus: #facc15;
+  --shadow: 0 20px 60px rgba(0, 0, 0, 0.18);
+}
+
+/* ===== Layout ===== */
+.home-container {
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  position: relative;
+  overflow: hidden;
+  font-family: 'Gaegu', system-ui, -apple-system, Segoe UI, Roboto, Noto Sans, sans-serif;
+  background: linear-gradient(135deg, var(--bg-start), var(--bg-end));
+}
+
+.home-inner {
+  width: min(760px, 92vw);
+  text-align: center;
+  color: var(--text-main);
+  background: var(--card-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--card-border);
+  border-radius: 24px;
+  box-shadow: var(--shadow);
+  padding: clamp(32px, 5vw, 60px);
+  position: relative;
+  z-index: 1;
+  animation: floatIn 600ms ease both;
+}
+
+/* ===== Text ===== */
+.home-title {
+  font-size: clamp(30px, 5vw, 48px);
+  line-height: 1.2;
+  font-weight: 700;
+  margin: 6px 0 14px;
+}
+
+.home-description {
+  color: var(--text-dim);
+  font-size: clamp(16px, 2.5vw, 20px);
+  margin: 0 0 28px;
+}
+
+.home-hint {
+  margin-top: 14px;
+  font-size: 14px;
+  color: #475569;
+}
+
+/* ===== Image (선택적) ===== */
+.home-image-wrap {
+  display: grid;
+  place-items: center;
+  margin: 14px 0 36px;
+}
+
+.home-image {
+  width: min(420px, 88%);
+  height: auto;
+  border-radius: 16px;
+  transform: translateZ(0);
+  transition: transform 0.2s ease;
+}
+
+.home-image:hover {
+  transform: scale(1.01);
+}
+
+/* ===== Button ===== */
+.start-button {
+  cursor: pointer;
+  border: none;
+  border-radius: 999px;
+  padding: 16px 28px;
+  font-weight: 700;
+  font-size: 17px;
+  background: var(--primary);
+  color: #fff;
+  box-shadow: 0 10px 25px rgba(37, 99, 235, 0.35);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.start-button:hover {
+  background: var(--primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px rgba(37, 99, 235, 0.45);
+}
+
+.start-button:active {
+  transform: translateY(0);
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.35);
+}
+
+.start-button:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+}
+
+/* ===== Background Ornaments ===== */
+.bg-shape {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(40px);
+  opacity: 0.35;
+  animation: float 8s ease-in-out infinite;
+}
+
+.bg-1 {
+  width: 420px;
+  height: 420px;
+  background: radial-gradient(closest-side, #60a5fa, transparent 72%);
+  top: -80px;
+  left: -80px;
+  animation-delay: 0.2s;
+}
+
+.bg-2 {
+  width: 520px;
+  height: 520px;
+  background: radial-gradient(closest-side, #facc15, transparent 70%);
+  right: -120px;
+  bottom: -120px;
+  animation-delay: 0.6s;
+}
+
+/* ===== Animations ===== */
+@keyframes floatIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) translateX(0);
+  }
+  50% {
+    transform: translateY(-12px) translateX(6px);
+  }
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 560px) {
+  .home-inner {
+    border-radius: 18px;
+  }
+
+  .start-button {
+    width: 100%;
+  }
+}
+
+/* ===== Accessibility ===== */
+@media (prefers-reduced-motion: reduce) {
+  .home-inner,
+  .bg-shape,
+  .home-image {
+    animation: none !important;
+    transition: none !important;
+  }
+}

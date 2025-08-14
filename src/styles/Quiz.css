@@ -1,0 +1,128 @@
+/* ===== Quiz Layout ===== */
+.quiz-container {
+    min-height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
+    font-family: 'Gaegu', system-ui, -apple-system, Segoe UI, Roboto, Noto Sans, sans-serif;
+    background: linear-gradient(135deg, var(--bg-start), var(--bg-end));
+  }
+  
+  /* ===== Inner Box ===== */
+  .quiz-inner {
+    width: min(760px, 92vw);
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--card-border);
+    border-radius: 24px;
+    box-shadow: var(--shadow);
+    padding: clamp(32px, 5vw, 60px);
+    text-align: center;
+    color: var(--text-main);
+    animation: floatIn 600ms ease both;
+  }
+  
+  /* ===== Question ===== */
+  .quiz-question {
+    font-size: clamp(22px, 4vw, 28px);
+    font-weight: 700;
+    margin-bottom: 24px;
+    line-height: 1.4;
+  }
+  
+  /* ===== Options Layout ===== */
+  .quiz-options {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  
+  /* ===== 기본 보기 버튼 스타일 ===== */
+  .quiz-option {
+    padding: 14px 20px;
+    font-size: 17px;
+    font-weight: 600;
+    border: none;
+    border-radius: 12px;
+    background-color: #fff;
+    color: var(--text-main);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.15s ease;
+  }
+  
+  /* ===== 정답: 초록 강조 ===== */
+  .quiz-option.correct {
+    background-color: #22c55e;
+    color: white;
+    border: 2px solid #16a34a;
+  }
+  
+  /* ===== 오답: 빨강 강조 ===== */
+  .quiz-option.wrong {
+    background-color: #ef4444;
+    color: white;
+    border: 2px solid #b91c1c;
+  }
+  
+  /* ===== 정답/오답 외 보기 (선택 안 됨): 연회색 처리 ===== */
+  .quiz-option.disabled {
+    background-color: #f3f4f6 !important;
+    color: #9ca3af !important;
+    border: 1px solid #e5e7eb !important;
+    box-shadow: none !important;
+    opacity: 0.8 !important;
+    cursor: not-allowed !important;
+  }
+  
+  /* ===== Hover 효과: 선택 전일 때만 적용 ===== */
+  .quiz-option:hover {
+    background-color: var(--primary);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.35);
+  }
+  
+  /* ===== Hover 제거: 선택 완료 후에는 효과 무시 ===== */
+  .quiz-option.correct:hover,
+  .quiz-option.wrong:hover,
+  .quiz-option.disabled:hover {
+    background-color: inherit;
+    color: inherit;
+    transform: none;
+    box-shadow: none;
+  }
+  
+  /* ===== Active 효과 ===== */
+  .quiz-option:active {
+    transform: translateY(0);
+  }
+  
+  /* ===== Progress 표시 ===== */
+  .quiz-progress {
+    margin-top: 28px;
+    font-size: 15px;
+    color: var(--text-dim);
+  }
+  
+  /* ===== 애니메이션 효과 ===== */
+  @keyframes floatIn {
+    from {
+      opacity: 0;
+      transform: translateY(8px) scale(0.985);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+  
+  /* ===== 반응형 ===== */
+  @media (max-width: 560px) {
+    .quiz-option {
+      font-size: 16px;
+    }
+  }
+  
